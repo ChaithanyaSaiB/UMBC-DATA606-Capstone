@@ -1,4 +1,5 @@
 # Chaithanya Sai Bommavaram
+[Photo](docs/Chaithanya Sai_Bommavaram_Passport_Photo.png)  
 **Graduate Student in Data Science** at **University of Maryland Baltimore County**  
 (Aug 2022 – May 2024)  
 **Mobile Number**: 310-962-8683  
