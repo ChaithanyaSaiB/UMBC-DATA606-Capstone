@@ -63,3 +63,20 @@
 
     We have URL from the Tweet column which could be further used for web scraping for  additional information
     Since this is unsupervised problem, there are only features that are mentioned above and no target variable(s)
+
+## 4. Exploratory Data Analysis (EDA)
+
+- Perform data exploration using Jupyter Notebook
+- You would focus on the target variable and the selected features and drop all other columns.
+- produce summary statistics of key variables
+- Create visualizations (I recommend using **Plotly Express**)
+- Find out if the data require cleansing:
+  - Missing values?
+  - Duplicate rows? 
+- Find out if the data require splitting, merging, pivoting, melting, etc.
+- Find out if you need to bring in other data sources to augment your data.
+  - For example, population, socioeconomic data from Census may be helpful.
+- For textual data, you will pre-process (normalize, remove stopwords, tokenize) them before you can analyze them in predictive analysis/machine learning.
+- Make sure the resulting dataset need to be "tidy":
+  - each row represent one observation (ideally one unique entity/subject).
+  - each columm represents one unique property of that entity. 
