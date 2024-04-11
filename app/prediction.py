@@ -15,6 +15,7 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from gensim.corpora.dictionary import Dictionary
 import streamlit as st
+import io
 
 # Function to fetch the content from a URL
 def fetch_content(url):
