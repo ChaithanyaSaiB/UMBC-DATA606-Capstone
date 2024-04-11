@@ -141,10 +141,10 @@ def predict(url):
   lemmatized_data = lowercase_words_and_lemmatize(tokenized_data)
   filtered_data = remove_non_alphabetic_and_custom_stopwords(stopwords_removal(lemmatized_data))
     
-  model_dictionary = Dictionary.load('dictionary.sav')
+  model_dictionary = Dictionary.load('https://github.com/ChaithanyaSaiB/UMBC-DATA606-Capstone/blob/main/app/dictionary.sav')
   transformed_data = model_dictionary.doc2bow(filtered_data)
 
-  lda_model = joblib.load("lda_model.sav")
+  lda_model = joblib.load("https://github.com/ChaithanyaSaiB/UMBC-DATA606-Capstone/blob/main/app/lda_model.sav")
   topics_probability = lda_model.get_document_topics(transformed_data)
   topic_number = max(topics_probability, key=lambda x: x[1])[0]
   return index_to_topic.get(topic_number)
