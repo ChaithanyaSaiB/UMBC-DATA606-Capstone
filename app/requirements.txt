@@ -1,6 +1,7 @@
+scipy==1.10.1
 pandas
 joblib
 nltk
 bs4
 gensim
-triu
+
