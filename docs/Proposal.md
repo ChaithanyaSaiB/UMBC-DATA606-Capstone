@@ -1,6 +1,6 @@
-## 1. Topic Modelling on 2015 Health News in Twitter
+## 1. Topic Modelling on 2015 CNN Health News in Twitter
 
-- **Project Title**: Topic Modelling on 2015 Health News in Twitter
+- **Project Title**: Topic Modelling on 2015 CNN Health News in Twitter
 - **Prepared for**: UMBC Data Science Master Degree Capstone by Dr Chaojie (Jay) Wang
 - **Author Name**: Chaithanya Sai Bommavaram
 - [Link to the author's GitHub profile](https://github.com/ChaithanyaSaiB)
