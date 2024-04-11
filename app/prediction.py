@@ -89,12 +89,12 @@ def lowercase_words_and_lemmatize(word_list):
 
 parts_of_speech_to_remove = ['DT', 'IN', 'PRP', 'PRP$', 'CC', 'VB', 'JJ']
 
-# Function to read lines from text file URL and store them as a list
-def read_lines_from_url(url):
-    response = requests.get(url)
+# Function to read text from GitHub URL
+def read_text_from_github(url):
+    raw_url = url.replace("github.com", "raw.githubusercontent.com").replace("/blob/", "/")
+    response = requests.get(raw_url)
     if response.status_code == 200:
-        lines = response.text  # Split text into lines
-        return lines
+        return response.text
     else:
         return None
 
@@ -108,9 +108,12 @@ def stopwords_removal(word_list):
   #f = open('custom stopwords.txt','r')
   #custom_stopwords = [word.strip() for word in f.readlines()]
   #f.close()
-  custom_stopwords_file_url = 'https://github.com/ChaithanyaSaiB/UMBC-DATA606-Capstone/blob/main/app/custom%20stopwords.txt'
-  custom_stopwords = read_lines_from_url(custom_stopwords_file_url)
-  st.text(custom_stopwords)
+  # Define the GitHub URL of the text file
+  github_url = "https://github.com/username/repo/blob/main/file.txt"
+
+  # Read the text from the GitHub URL
+  file_text = read_text_from_github(github_url)
+  st.text(file_text)
 
   return [word for word, pos in tagged_words if pos not in parts_of_speech_to_remove and word not in stop_words and word not in custom_stopwords]
 
