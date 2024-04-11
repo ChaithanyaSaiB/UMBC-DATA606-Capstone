@@ -88,6 +88,15 @@ def lowercase_words_and_lemmatize(word_list):
 
 parts_of_speech_to_remove = ['DT', 'IN', 'PRP', 'PRP$', 'CC', 'VB', 'JJ']
 
+# Function to read lines from text file URL and store them as a list
+def read_lines_from_url(url):
+    response = requests.get(url)
+    if response.status_code == 200:
+        lines = response.text.split('\n')  # Split text into lines
+        return lines
+    else:
+        return None
+
 def stopwords_removal(word_list):
   # Tag words with their parts of speech
   tagged_words = nltk.pos_tag(word_list)
