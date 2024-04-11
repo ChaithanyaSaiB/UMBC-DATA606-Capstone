@@ -134,6 +134,23 @@ index_to_topic = {
     8: "Healthcare System and Cases"
 }
 
+# Function to load the model
+@st.cache(allow_output_mutation=True)
+def load_model_from_github(url):
+    # Make an HTTP GET request to fetch the file content
+    response = requests.get(url)
+    
+    # Check if the request was successful
+    if response.status_code == 200:
+        # Read the content of the file
+        content = io.BytesIO(response.content)
+        
+        # Load the model from the content
+        model = joblib.load(content)
+        return model
+    else:
+        st.error(f"Failed to load model from {url}. Status code: {response.status_code}")
+
 def predict(url):
   raw_data = extract_body(fetch_content(url))
   content = " ".join([p_tag.text.strip() for p_tag in raw_data])
@@ -144,7 +161,7 @@ def predict(url):
   model_dictionary = Dictionary.load('https://raw.githubusercontent.com/ChaithanyaSaiB/UMBC-DATA606-Capstone/main/app/dictionary.sav')
   transformed_data = model_dictionary.doc2bow(filtered_data)
 
-  lda_model = joblib.load('https://raw.githubusercontent.com/ChaithanyaSaiB/UMBC-DATA606-Capstone/main/app/lda_model.sav')
+  lda_model = joblib.load(load_model_from_github('https://github.com/ChaithanyaSaiB/UMBC-DATA606-Capstone/raw/main/app/lda_model.sav'))
   topics_probability = lda_model.get_document_topics(transformed_data)
   topic_number = max(topics_probability, key=lambda x: x[1])[0]
   return index_to_topic.get(topic_number)
