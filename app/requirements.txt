@@ -3,3 +3,4 @@ joblib
 nltk
 bs4
 gensim
+triu
