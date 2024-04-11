@@ -109,7 +109,7 @@ def stopwords_removal(word_list):
   #custom_stopwords = [word.strip() for word in f.readlines()]
   #f.close()
   # Define the GitHub URL of the text file
-  github_url = "https://github.com/username/repo/blob/main/file.txt"
+  github_url = "https://github.com/ChaithanyaSaiB/UMBC-DATA606-Capstone/blob/main/app/custom%20stopwords.txt"
 
   # Read the text from the GitHub URL
   file_text = read_text_from_github(github_url)
