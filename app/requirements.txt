@@ -1,3 +1,4 @@
 pandas
 joblib
 nltk
+bs4
