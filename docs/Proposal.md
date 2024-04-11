@@ -48,6 +48,8 @@
 
     Unique number to differentiate each tweet, date and time of the tweet and actual content of the tweet
   - **Which variable/column will be your target/label in your ML model?**
+
+    Since it is topic modeling problem, it doesn't have any target/label data as such
   - **Which variables/columns may be selected as features/predictors for your ML models?**
 
     We have URL from the Tweet column which could be further used for web scraping for  additional information
