@@ -93,7 +93,7 @@ parts_of_speech_to_remove = ['DT', 'IN', 'PRP', 'PRP$', 'CC', 'VB', 'JJ']
 def read_lines_from_url(url):
     response = requests.get(url)
     if response.status_code == 200:
-        lines = response.text.split('\n')  # Split text into lines
+        lines = response.text  # Split text into lines
         return lines
     else:
         return None
