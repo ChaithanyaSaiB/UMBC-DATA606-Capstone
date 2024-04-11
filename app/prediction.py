@@ -95,9 +95,12 @@ def stopwords_removal(word_list):
   # Get a list of common English stopwords
   stop_words = set(stopwords.words('english'))
 
-  f = open('custom stopwords.txt','r')
-  custom_stopwords = [word.strip() for word in f.readlines()]
-  f.close()
+  #f = open('custom stopwords.txt','r')
+  #custom_stopwords = [word.strip() for word in f.readlines()]
+  #f.close()
+  custom_stopwords_file_url = 'https://github.com/ChaithanyaSaiB/UMBC-DATA606-Capstone/blob/main/app/custom%20stopwords.txt'
+  custom_stopwords = read_lines_from_url(custom_stopwords_file_url)
+  st.text(custom_stopwords)
 
   return [word for word, pos in tagged_words if pos not in parts_of_speech_to_remove and word not in stop_words and word not in custom_stopwords]
 
