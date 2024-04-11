@@ -112,7 +112,7 @@ def stopwords_removal(word_list):
   github_url = "https://github.com/ChaithanyaSaiB/UMBC-DATA606-Capstone/blob/main/app/custom%20stopwords.txt"
 
   # Read the text from the GitHub URL
-  file_text = read_text_from_github(github_url).split('\n').strip()
+  file_text = read_text_from_github(github_url)
   st.text(file_text)
 
   return [word for word, pos in tagged_words if pos not in parts_of_speech_to_remove and word not in stop_words and word not in custom_stopwords]
