@@ -108,7 +108,7 @@ def stopwords_removal(word_list):
   #f = open('custom stopwords.txt','r')
   #custom_stopwords = [word.strip() for word in f.readlines()]
   #f.close()
-  custom_stopwords_file_url = 'https://github.com/ChaithanyaSaiB/UMBC-DATA606-Capstone/blob/main/app/custom%20stopwords.txt'
+  custom_stopwords_file_url = 'app/custom stopwords.txt'
   custom_stopwords = read_lines_from_url(custom_stopwords_file_url)
   st.text(custom_stopwords)
 
