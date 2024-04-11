@@ -5,4 +5,3 @@ nltk
 bs4
 gensim
 requests
-io
