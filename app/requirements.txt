@@ -2,3 +2,4 @@ pandas
 joblib
 nltk
 bs4
+gensim
