@@ -17,7 +17,7 @@ if st.button("Find Topic"):
   word_cloud = WordCloud(width = 800, height = 800,
                 background_color ='white',
                 #stopwords = set(STOPWORDS),
-                min_font_size = 10).generate(article_words.join(' '))
+                min_font_size = 10).generate(' '.join(article_words))
 
   # plot the WordCloud image
   fig = plt.figure(figsize = (8, 8), facecolor = None)
