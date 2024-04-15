@@ -14,14 +14,14 @@ if st.button("Find Topic"):
   result, article_words = predict(article_url)
   st.text("Topic seems to be most related to "+result)
 
-  wordcloud = WordCloud(width = 800, height = 800,
+  word_cloud = WordCloud(width = 800, height = 800,
                 background_color ='white',
                 #stopwords = set(STOPWORDS),
                 min_font_size = 10).generate(article_words.str.cat(sep = ' '))
 
 # plot the WordCloud image
 fig = plt.figure(figsize = (8, 8), facecolor = None)
-plt.imshow(wordcloud)
+plt.imshow(word_cloud)
 plt.axis("off")
 plt.tight_layout(pad = 0)
 
