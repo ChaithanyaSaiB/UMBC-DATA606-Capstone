@@ -165,4 +165,4 @@ def predict(url):
   lda_model = load_model_from_github('https://raw.githubusercontent.com/ChaithanyaSaiB/UMBC-DATA606-Capstone/main/app/lda_model.sav')
   topics_probability = lda_model.get_document_topics(transformed_data)
   topic_number = max(topics_probability, key=lambda x: x[1])[0]
-  return index_to_topic.get(topic_number)
+  return index_to_topic.get(topic_number) , filtered_data
