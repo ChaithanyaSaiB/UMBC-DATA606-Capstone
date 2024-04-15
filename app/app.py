@@ -19,10 +19,10 @@ if st.button("Find Topic"):
                 #stopwords = set(STOPWORDS),
                 min_font_size = 10).generate(article_words.str.cat(sep = ' '))
 
-# plot the WordCloud image
-fig = plt.figure(figsize = (8, 8), facecolor = None)
-plt.imshow(word_cloud)
-plt.axis("off")
-plt.tight_layout(pad = 0)
+  # plot the WordCloud image
+  fig = plt.figure(figsize = (8, 8), facecolor = None)
+  plt.imshow(word_cloud)
+  plt.axis("off")
+  plt.tight_layout(pad = 0)
 
-st.pyplot(fig)
+  st.pyplot(fig)
