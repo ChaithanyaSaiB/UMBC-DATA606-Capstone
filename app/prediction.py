@@ -1,185 +1,9 @@
-"""import joblib
-import pandas as pd
-import re
-import requests
-from bs4 import BeautifulSoup
-import nltk
-nltk.download('punkt')
-nltk.download('stopwords')
-nltk.download('averaged_perceptron_tagger')
-nltk.download('wordnet')
-nltk.download('words')
-from nltk.corpus import wordnet
-from nltk.tokenize import word_tokenize
-from nltk.corpus import stopwords
-from nltk.stem import WordNetLemmatizer
-from gensim.corpora.dictionary import Dictionary
-import streamlit as st
-import io
-
-# Function to fetch the content from a URL
-def fetch_content(url):
-    try:
-        response = requests.get(url, timeout=10)
-        if response.status_code == 200:
-            return response.text
-        else:
-            return None
-    except Exception as e:
-        print("Error fetching content:", e)
-        return None
-
-# Function to extract body content from HTML using BeautifulSoup
-def extract_body(html_content):
-    if html_content:
-        soup = BeautifulSoup(html_content, 'html.parser')
-        article_body = soup.findAll('p', class_='paragraph')
-        if article_body:
-            return article_body
-        else:
-            return None
-    else:
-        return None
-
-def split_string_with_special_characters(word_list):
-  # Define pattern for special characters
-  pattern = r'[-\s]'
-
-  for word in word_list:
-    if re.search(r'[-\s]', word):
-      # Split the string using the pattern
-      substrings = re.split(pattern, word)
-
-      # Remove empty substrings
-      substrings = [substr for substr in substrings if substr]
-
-      word_list.remove(word)
-      word_list.extend(substrings)
-  return word_list
-
-def lowercase_words_and_lemmatize(word_list):
-    # Convert words to lowercase
-    word_list_lower = [word.lower() for word in word_list]
-
-    # Tag POS for each word
-    pos_tags = nltk.pos_tag(word_list_lower)
-
-    # Map POS tags to WordNet POS tags
-    def get_wordnet_pos(tag):
-        if tag.startswith('J'):
-            return wordnet.ADJ
-        elif tag.startswith('V'):
-            return wordnet.VERB
-        elif tag.startswith('N'):
-            return wordnet.NOUN
-        elif tag.startswith('R'):
-            return wordnet.ADV
-        else:
-            return wordnet.NOUN  # Default to noun if POS tag not found
-
-    # Lemmatize words using correct POS tags
-    lemmatized_words = []
-
-    lemmatizer = WordNetLemmatizer()
-    for word, tag in pos_tags:
-        pos = get_wordnet_pos(tag)
-        lemma = lemmatizer.lemmatize(word, pos=pos)
-        lemmatized_words.append(lemma)
-
-    return lemmatized_words
-
-parts_of_speech_to_remove = ['DT', 'IN', 'PRP', 'PRP$', 'CC', 'VB', 'JJ']
-
-# Function to read text from GitHub URL
-def read_text_from_github(url):
-    raw_url = url.replace("github.com", "raw.githubusercontent.com").replace("/blob/", "/")
-    response = requests.get(raw_url)
-    if response.status_code == 200:
-        return response.text
-    else:
-        return None
-
-def stopwords_removal(word_list):
-  # Tag words with their parts of speech
-  tagged_words = nltk.pos_tag(word_list)
-
-  # Get a list of common English stopwords
-  stop_words = set(stopwords.words('english'))
-
-  #f = open('custom stopwords.txt','r')
-  #custom_stopwords = [word.strip() for word in f.readlines()]
-  #f.close()
-  # Define the GitHub URL of the text file
-  github_url = "https://github.com/ChaithanyaSaiB/UMBC-DATA606-Capstone/blob/main/app/custom%20stopwords.txt"
-
-  # Read the text from the GitHub URL
-  custom_stopwords = read_text_from_github(github_url).split()
-  
-  return [word for word, pos in tagged_words if pos not in parts_of_speech_to_remove and word not in stop_words and word not in custom_stopwords]
-
-def remove_non_alphabetic_and_custom_stopwords(word_list):
-    english_words = set(nltk.corpus.words.words())
-
-    # Remove non-alphabetic characters and filter out empty strings
-    return [word for word in [re.sub(r'[^a-zA-Z]', '', word) for word in word_list] if word in english_words]
-
-index_to_topic = {
-    0: "Vaccination and Measles",
-    1: "Medical Treatments and Marijuana",
-    2: "Health Research and Findings",
-    3: "Childhood Mental Health and Education",
-    4: "Infectious Diseases and Hygiene",
-    5: "Food and Nutrition",
-    6: "Family Health and Illness",
-    7: "Personal Health and Weight Management",
-    8: "Healthcare System and Cases"
-}
-
-# Function to load the model
-@st.cache(allow_output_mutation=True)
-def load_model_from_github(url):
-    # Make an HTTP GET request to fetch the file content
-    response = requests.get(url)
-    
-    # Check if the request was successful
-    if response.status_code == 200:
-        # Read the content of the file
-        content = io.BytesIO(response.content)
-        
-        # Load the model from the content
-        model = joblib.load(content)
-        return model
-    else:
-        st.error(f"Failed to load model from {url}. Status code: {response.status_code}")
-
-def predict(url):
-  raw_data = extract_body(fetch_content(url))
-  content = " ".join([p_tag.text.strip() for p_tag in raw_data])
-  tokenized_data = word_tokenize(content)
-  lemmatized_data = lowercase_words_and_lemmatize(tokenized_data)
-  filtered_data = remove_non_alphabetic_and_custom_stopwords(stopwords_removal(lemmatized_data))
-    
-  model_dictionary = Dictionary.load('https://raw.githubusercontent.com/ChaithanyaSaiB/UMBC-DATA606-Capstone/main/app/dictionary.sav')
-  transformed_data = model_dictionary.doc2bow(filtered_data)
-
-  lda_model = load_model_from_github('https://raw.githubusercontent.com/ChaithanyaSaiB/UMBC-DATA606-Capstone/main/app/lda_model.sav')
-  topics_probability = lda_model.get_document_topics(transformed_data)
-  topic_number = max(topics_probability, key=lambda x: x[1])[0]
-  return index_to_topic.get(topic_number) , filtered_data"""
-
-
 import joblib
 import pandas as pd
 import re
 import requests
 from bs4 import BeautifulSoup
 import nltk
-nltk.download('punkt')
-nltk.download('stopwords')
-nltk.download('averaged_perceptron_tagger')
-nltk.download('wordnet')
-nltk.download('words')
-from nltk.corpus import wordnet
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
@@ -187,8 +11,23 @@ from gensim.corpora.dictionary import Dictionary
 import streamlit as st
 import io
 
-# Function to fetch the content from a URL
+# Download NLTK resources
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('averaged_perceptron_tagger')
+nltk.download('wordnet')
+nltk.download('words')
+
 def fetch_content(url):
+    """
+    Fetches the content of a webpage from the given URL.
+
+    Args:
+        url (str): The URL of the webpage to fetch.
+
+    Returns:
+        str: The content of the webpage as a string, or None if fetching fails.
+    """
     try:
         response = requests.get(url, timeout=10)
         if response.status_code == 200:
@@ -199,8 +38,16 @@ def fetch_content(url):
         print("Error fetching content:", e)
         return None
 
-# Function to extract body content from HTML using BeautifulSoup
 def extract_body(html_content):
+    """
+    Extracts the body content from HTML using BeautifulSoup.
+
+    Args:
+        html_content (str): The HTML content of a webpage.
+
+    Returns:
+        list: A list of paragraph tags containing the body content, or None if extraction fails.
+    """
     if html_content:
         soup = BeautifulSoup(html_content, 'html.parser')
         article_body = soup.findAll('p', class_='paragraph')
@@ -211,8 +58,16 @@ def extract_body(html_content):
     else:
         return None
 
-# Function to split strings with special characters
 def split_string_with_special_characters(word_list):
+    """
+    Splits strings in a list based on special characters.
+
+    Args:
+        word_list (list): A list of words.
+
+    Returns:
+        list: A list of words split based on special characters.
+    """
     pattern = r'[-\s]'
     for word in word_list:
         if re.search(r'[-\s]', word):
@@ -222,8 +77,16 @@ def split_string_with_special_characters(word_list):
             word_list.extend(substrings)
     return word_list
 
-# Function to convert words to lowercase and lemmatize
 def lowercase_words_and_lemmatize(word_list):
+    """
+    Converts words to lowercase and lemmatizes them.
+
+    Args:
+        word_list (list): A list of words.
+
+    Returns:
+        list: A list of lemmatized words.
+    """
     word_list_lower = [word.lower() for word in word_list]
     pos_tags = nltk.pos_tag(word_list_lower)
 
@@ -248,29 +111,38 @@ def lowercase_words_and_lemmatize(word_list):
 
     return lemmatized_words
 
-# Parts of speech to remove during stopwords removal
-parts_of_speech_to_remove = ['DT', 'IN', 'PRP', 'PRP$', 'CC', 'VB', 'JJ']
-
-# Function to remove stopwords
 def stopwords_removal(word_list):
+    """
+    Removes stopwords from a list of words.
+
+    Args:
+        word_list (list): A list of words.
+
+    Returns:
+        list: A list of words with stopwords removed.
+    """
     tagged_words = nltk.pos_tag(word_list)
     stop_words = set(stopwords.words('english'))
 
-    # Define the GitHub URL of the custom stopwords file
     github_url = "https://github.com/ChaithanyaSaiB/UMBC-DATA606-Capstone/blob/main/app/custom%20stopwords.txt"
-    
-    # Read the custom stopwords from the GitHub URL
     custom_stopwords = read_text_from_github(github_url).split()
   
     return [word for word, pos in tagged_words if pos not in parts_of_speech_to_remove 
             and word not in stop_words and word not in custom_stopwords]
 
-# Function to remove non-alphabetic characters and custom stopwords
 def remove_non_alphabetic_and_custom_stopwords(word_list):
+    """
+    Removes non-alphabetic characters and custom stopwords from a list of words.
+
+    Args:
+        word_list (list): A list of words.
+
+    Returns:
+        list: A list of words with non-alphabetic characters and custom stopwords removed.
+    """
     english_words = set(nltk.corpus.words.words())
     return [word for word in [re.sub(r'[^a-zA-Z]', '', word) for word in word_list] if word in english_words]
 
-# Mapping topic index to topic name
 index_to_topic = {
     0: "Vaccination and Measles",
     1: "Medical Treatments and Marijuana",
@@ -283,8 +155,16 @@ index_to_topic = {
     8: "Healthcare System and Cases"
 }
 
-# Function to read text from GitHub URL
 def read_text_from_github(url):
+    """
+    Reads text from a file hosted on GitHub.
+
+    Args:
+        url (str): The URL of the text file hosted on GitHub.
+
+    Returns:
+        str: The content of the text file as a string, or None if reading fails.
+    """
     raw_url = url.replace("github.com", "raw.githubusercontent.com").replace("/blob/", "/")
     response = requests.get(raw_url)
     if response.status_code == 200:
@@ -292,9 +172,17 @@ def read_text_from_github(url):
     else:
         return None
 
-# Function to load the model
 @st.cache(allow_output_mutation=True)
 def load_model_from_github(url):
+    """
+    Loads a model from a file hosted on GitHub.
+
+    Args:
+        url (str): The URL of the model file hosted on GitHub.
+
+    Returns:
+        object: The loaded model object, or None if loading fails.
+    """
     response = requests.get(url)
     if response.status_code == 200:
         content = io.BytesIO(response.content)
@@ -303,8 +191,16 @@ def load_model_from_github(url):
     else:
         st.error(f"Failed to load model from {url}. Status code: {response.status_code}")
 
-# Function to predict topic of news article
 def predict(url):
+    """
+    Predicts the topic of a news article from a given URL.
+
+    Args:
+        url (str): The URL of the news article.
+
+    Returns:
+        tuple: A tuple containing the predicted topic and the filtered data.
+    """
     raw_data = extract_body(fetch_content(url))
     content = " ".join([p_tag.text.strip() for p_tag in raw_data])
     tokenized_data = word_tokenize(content)
@@ -317,4 +213,4 @@ def predict(url):
     lda_model = load_model_from_github('https://raw.githubusercontent.com/ChaithanyaSaiB/UMBC-DATA606-Capstone/main/app/lda_model.sav')
     topics_probability = lda_model.get_document_topics(transformed_data)
     topic_number = max(topics_probability, key=lambda x: x[1])[0]
-    return index_to_topic.get(topic_number) , filtered_data
+    return index_to_topic.get(topic_number), filtered_data
