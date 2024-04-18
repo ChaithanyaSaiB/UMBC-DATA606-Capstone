@@ -7,4 +7,3 @@ gensim
 requests
 wordcloud
 matplotlib
-wordnet
