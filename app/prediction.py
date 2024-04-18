@@ -122,6 +122,10 @@ def stopwords_removal(word_list):
     Returns:
         list: A list of words with stopwords removed.
     """
+
+    # Define parts of speech to remove
+    parts_of_speech_to_remove = ['NN', 'VB', 'JJ']
+    
     tagged_words = nltk.pos_tag(word_list)
     stop_words = set(stopwords.words('english'))
 
