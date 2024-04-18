@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 import nltk
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
+from nltk.corpus import wordnet
 from nltk.stem import WordNetLemmatizer
 from gensim.corpora.dictionary import Dictionary
 import streamlit as st
