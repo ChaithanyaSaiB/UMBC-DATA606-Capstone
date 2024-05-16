@@ -133,7 +133,7 @@ def extract_body(html_content_with_website_name):
         if soup:
             if website_name == 'www.cnn.com':
                 article_body = soup.findAll('p', class_='paragraph')
-            elif website_name == 'www.health.usnews.com':
+            elif website_name == 'www.everydayhealth.com':
                 article_body = soup.findAll('p')
             elif website_name == 'www.latimes.com':
                 article_body = soup.findAll('p')
