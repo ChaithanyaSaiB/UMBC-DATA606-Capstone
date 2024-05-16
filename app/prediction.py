@@ -4,6 +4,7 @@ import re
 import os
 import pandas as pd
 import streamlit as st
+from gensim.corpora import Dictionary
 
 import nltk
 from nltk.tokenize import word_tokenize
