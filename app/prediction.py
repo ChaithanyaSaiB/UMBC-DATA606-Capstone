@@ -261,7 +261,7 @@ def predict(url):
     preprocessed_data = preprocess_text(cleaned_data)
     
     model_dictionary = Dictionary.load('https://raw.githubusercontent.com/ChaithanyaSaiB/UMBC-DATA606-Capstone/main/app/dictionary.sav')
-    transformed_data = model_dictionary.doc2bow(filtered_data)
+    transformed_data = model_dictionary.doc2bow(preprocessed_data)
 
     lda_model = load_model_from_github('https://raw.githubusercontent.com/ChaithanyaSaiB/UMBC-DATA606-Capstone/main/app/lda_model.sav')
     topics_probability = lda_model.get_document_topics(transformed_data)
