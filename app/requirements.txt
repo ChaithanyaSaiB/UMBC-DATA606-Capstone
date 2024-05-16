@@ -7,4 +7,3 @@ gensim
 requests
 wordcloud
 matplotlib
-fake-useragent
