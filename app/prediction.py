@@ -1,24 +1,24 @@
-import joblib
-import pandas as pd
+# Importing necessary libraries
+from webscraper import *
 import re
-import requests
-from bs4 import BeautifulSoup
+import os
+import pandas as pd
+
 import nltk
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
-from nltk.corpus import wordnet
 from nltk.stem import WordNetLemmatizer
-from gensim.corpora.dictionary import Dictionary
-import streamlit as st
-import io
+from nltk.corpus import wordnet
 
 # Download NLTK resources
 nltk.download('punkt')
 nltk.download('stopwords')
 nltk.download('averaged_perceptron_tagger')
 nltk.download('wordnet')
-nltk.download('words')
 
+
+
+'''
 def fetch_content(url):
     """
     Fetches the content of a webpage from the given URL.
@@ -195,17 +195,8 @@ def load_model_from_github(url):
         return model
     else:
         st.error(f"Failed to load model from {url}. Status code: {response.status_code}")
-
+'''
 def predict(url):
-    """
-    Predicts the topic of a news article from a given URL.
-
-    Args:
-        url (str): The URL of the news article.
-
-    Returns:
-        tuple: A tuple containing the predicted topic and the filtered data.
-    """
     raw_data = extract_body(fetch_content(url))
     content = " ".join([p_tag.text.strip() for p_tag in raw_data])
     tokenized_data = word_tokenize(content)
