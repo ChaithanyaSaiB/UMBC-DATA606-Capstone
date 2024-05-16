@@ -2,6 +2,7 @@ import requests
 from tqdm import tqdm
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse
+from fake_useragent_main.src import fake_useragent
 from fake_useragent_main.src.fake_useragent import UserAgent
 '''
 # Function to fetch content from a URL
