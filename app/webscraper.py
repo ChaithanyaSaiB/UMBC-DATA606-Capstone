@@ -3,6 +3,8 @@ from tqdm import tqdm
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 from fake_useragent import UserAgent
+import streamlit as st
+
 '''
 # Function to fetch content from a URL
 def fetch_content(url):
