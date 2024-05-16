@@ -252,7 +252,7 @@ def preprocess_text(text):
     "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
     ]
     tokens = [token for token in tokens if token not in stop_words and token not in custom_stopwords]  # Remove stopwords
-    return ' '.join(tokens)
+    return tokens
 
 def predict(url):
     raw_data = extract_body(fetch_content(url))
