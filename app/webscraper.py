@@ -79,6 +79,7 @@ def extract_body(html_content_with_website_name):
                 storytext_div = soup.find('div', id='storytext')
                 if storytext_div:
                     article_body = storytext_div.find_all('p')
+                    st.text(article_body)
                 else:
                     article_body = None
             elif website_name == 'www.cbc.ca':
