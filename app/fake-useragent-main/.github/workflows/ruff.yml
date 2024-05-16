@@ -1,0 +1,19 @@
+# https://beta.ruff.rs
+name: Ruff linter
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  ruff-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Ruff Check
+        run: ruff check .
