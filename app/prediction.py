@@ -176,7 +176,15 @@ def read_text_from_github(url):
         return response.text
     else:
         return None
+'''
 
+index_to_topic = {
+    0: "Healthcare Policy and Business",
+    1: "Medical Research and Studies",
+    2: "Entertainment and Sports",
+    3: "Disease and Public Health",
+    4: "Nutrition and Healthy Living"
+}
 @st.cache(allow_output_mutation=True)
 def load_model_from_github(url):
     """
@@ -195,13 +203,60 @@ def load_model_from_github(url):
         return model
     else:
         st.error(f"Failed to load model from {url}. Status code: {response.status_code}")
-'''
+
+# Function to clean text
+def clean_text(text):
+    # Remove HTML tags
+    text = BeautifulSoup(text, 'html.parser').get_text()
+    # Substitute hyphens with empty spaces
+    text = re.sub(r'-', ' ', text)
+    # Remove non-alphabetic characters
+    text = re.sub(r'[^a-zA-Z\s]', '', text)
+    # Convert text to lowercase
+    text = text.lower()
+    return text
+
+# Convert to wordnet tags
+def get_wordnet_pos(tag):
+    if tag.startswith('J'):
+        return wordnet.ADJ
+    elif tag.startswith('V'):
+        return wordnet.VERB
+    elif tag.startswith('N'):
+        return wordnet.NOUN
+    elif tag.startswith('R'):
+        return wordnet.ADV
+    else:
+        return None  # Use default POS for lemmatization
+    
+    # Tokenize and preprocess text data
+def preprocess_text(text):
+    tokens = word_tokenize(text)  # Tokenize text
+    lemmatizer = WordNetLemmatizer()  # Initialize lemmatizer
+    pos_tags = nltk.pos_tag(tokens)  # Get part-of-speech tags
+    for i, (token, tag) in enumerate(pos_tags):
+        pos = get_wordnet_pos(tag)  # Convert NLTK POS tags to WordNet POS tags
+        if pos:
+            tokens[i] = lemmatizer.lemmatize(token, pos=pos)  # Lemmatize tokens
+        else:
+            tokens[i] = lemmatizer.lemmatize(token)  # Use default POS for lemmatization
+    stop_words = set(stopwords.words('english'))  # Get stopwords
+    custom_stopwords = [    # Custom stopwords
+    "patient", "doctor", "say", "year", "state", "day", "need", "come", "well",
+    "make", "think", "know", "go", "use", "one", "like", "people", "may",
+    "many", "still", "even", "two", "way", "good", "much", "back", "new",
+    "time", "first", "really",
+    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
+    "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
+    ]
+    tokens = [token for token in tokens if token not in stop_words and token not in custom_stopwords]  # Remove stopwords
+    return ' '.join(tokens)
+
 def predict(url):
     raw_data = extract_body(fetch_content(url))
     content = " ".join([p_tag.text.strip() for p_tag in raw_data])
-    tokenized_data = word_tokenize(content)
-    lemmatized_data = lowercase_words_and_lemmatize(tokenized_data)
-    filtered_data = remove_non_alphabetic_and_custom_stopwords(stopwords_removal(lemmatized_data))
+    cleaned_data = clean_text(content)
+    preprocessed_data = preprocess_text(cleaned_data)
     
     model_dictionary = Dictionary.load('https://raw.githubusercontent.com/ChaithanyaSaiB/UMBC-DATA606-Capstone/main/app/dictionary.sav')
     transformed_data = model_dictionary.doc2bow(filtered_data)
