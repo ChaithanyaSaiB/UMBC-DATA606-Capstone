@@ -12,16 +12,16 @@
 
 - **What is it about?**
 
-This project is about extracting, preprocessing, and analyzing health news articles from tweets to identify key topics using machine learning techniques. The focus is on tweets from prominent health news agencies like NPR Health, CNN Health, CBC Health, Everyday Health, and LA Times Health. By extracting the content linked in these tweets and applying topic modeling, the project aims to uncover the main themes discussed in health news.
+    This project is about extracting, preprocessing, and analyzing health news articles from tweets to identify key topics using machine learning techniques. The focus is on tweets from prominent health news agencies like NPR Health, CNN Health, CBC Health, Everyday Health, and LA Times Health. By extracting the content linked in these tweets and applying topic modeling, the project aims to uncover the main themes discussed in health news.
 
 - **Why does it matter?**
 
-Health news is a crucial source of information for the public, influencing perceptions and decisions about health and wellness. Understanding the main topics in health news can:
-
-  1. Inform Public Health Strategies: By identifying the most discussed health issues, policymakers and health professionals can better address public concerns and allocate resources more effectively.
-  2. Guide Media Production: News agencies can tailor their content to focus on the most relevant and engaging topics, improving public awareness and education.
-  3. Enhance Health Communication: Recognizing prevalent topics helps in crafting better health messages and campaigns, ensuring they resonate with the public.
-  4. Monitor Health Trends: Analyzing health news can reveal emerging trends and issues, providing early warnings about potential public health crises.
+    Health news is a crucial source of information for the public, influencing perceptions and decisions about health and wellness. Understanding the main topics in health news can:
+    
+  1. **Inform Public Health Strategies**: By identifying the most discussed health issues, policymakers and health professionals can better address public concerns and allocate resources more effectively.
+  2. **Guide Media Production**: News agencies can tailor their content to focus on the most relevant and engaging topics, improving public awareness and education.
+  3. **Enhance Health Communication**: Recognizing prevalent topics helps in crafting better health messages and campaigns, ensuring they resonate with the public.
+  4. **Monitor Health Trends**: Analyzing health news can reveal emerging trends and issues, providing early warnings about potential public health crises.
 
 - **Research Questions**
   1. What are the main topics discussed in health news articles shared on Twitter by major health news agencies?
@@ -32,16 +32,23 @@ Health news is a crucial source of information for the public, influencing perce
 
 - **Data sources**
 
-  Data was taken from UCI Machine Learning Repository
+The datasets used in this project are collected from tweets by the following prominent health news agencies:
+
+NPR Health
+CNN Health
+CBC Health
+Everyday Health
+LA Times Health
+These tweets contain links to health news articles, which are the primary content for analysis.
 - **Data Size**
 
-  All the files for the data make up almost 9 MB
+  All the files for the data make up almost 2.91 MB
 - **Data Shape**
 
-  Data initially would be 3 columns and almost 58000 instances
+  Data initially would be 3 columns and almost 20049 instances
 - **Time period**
 
-  Data is collected from Twitter in the year 2015
+  Data is collected from Twitter in the year 2015 according UCI Machine Learning Repository dataset page
 - **What does each row represent?**
 
   From the data description in UCI, **each row in the data stands for tweet on health news by various news agencies**
@@ -57,11 +64,10 @@ Health news is a crucial source of information for the public, influencing perce
     Unique number to differentiate each tweet, date and time of the tweet and actual content of the tweet
   - **Which variable/column will be your target/label in your ML model?**
 
-    Since it is topic modeling problem, it doesn't have any target/label data as such
+    The target/label in the machine learning model is the '**topic**' of the health news article. This will be determined through topic modeling (e.g., using LDA) and then used for classification or other ML tasks.
   - **Which variables/columns may be selected as features/predictors for your ML models?**
 
-    We have URL from the Tweet column which could be further used for web scraping for  additional information
-    Since this is unsupervised problem, there are only features that are mentioned above and no target variable(s)
+    We have URL from the Tweet column which is further used for web scraping for gathering the article content. Upon which further cleaning, preprocessing and modeling are done to get the topic name for the article under analysis.
 
 ## 4. Exploratory Data Analysis (EDA)
 
