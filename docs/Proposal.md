@@ -12,13 +12,21 @@
 
 - **What is it about?**
 
-  Aimed at applying topic modeling techniques to identify common themes of the articles under consideration
+This project is about extracting, preprocessing, and analyzing health news articles from tweets to identify key topics using machine learning techniques. The focus is on tweets from prominent health news agencies like NPR Health, CNN Health, CBC Health, Everyday Health, and LA Times Health. By extracting the content linked in these tweets and applying topic modeling, the project aims to uncover the main themes discussed in health news.
+
 - **Why does it matter?**
 
-  Topic modelling for news content analysis is a powerful exploratory method to get insight into the diversity of topics in the focus of media that implies indirectly the focus of our society.
-- **What are your research questions?**
+Health news is a crucial source of information for the public, influencing perceptions and decisions about health and wellness. Understanding the main topics in health news can:
 
-  What were the most frequently mentioned topics for the considered time? 
+  1. Inform Public Health Strategies: By identifying the most discussed health issues, policymakers and health professionals can better address public concerns and allocate resources more effectively.
+  2. Guide Media Production: News agencies can tailor their content to focus on the most relevant and engaging topics, improving public awareness and education.
+  3. Enhance Health Communication: Recognizing prevalent topics helps in crafting better health messages and campaigns, ensuring they resonate with the public.
+  4. Monitor Health Trends: Analyzing health news can reveal emerging trends and issues, providing early warnings about potential public health crises.
+
+- **Research Questions**
+  1. What are the main topics discussed in health news articles shared on Twitter by major health news agencies?
+  2. How frequently do these topics appear in the dataset?
+  3. What are the key terms associated with each identified topic?
 
 ## 3. Data 
 
