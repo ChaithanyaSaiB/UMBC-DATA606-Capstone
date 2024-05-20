@@ -118,11 +118,14 @@
 ## 6. Application of the Trained Model
 
 I developed a web app for people to interact with the trained model using Streamlit, as shown below:
-![UMBC Logo](https://www.umbc.edu/wp-content/uploads/2020/10/umbc-logo.png)
 
-![Initial Screenshot](https://www.umbc.edu/wp-content/uploads/2020/10/umbc-logo.png)
+**Initial Screenshot**
 
-![Output Screenshot](https://www.umbc.edu/wp-content/uploads/2020/10/umbc-logo.png)
+<img src="https://github.com/ChaithanyaSaiB/UMBC-DATA606-Capstone/blob/a9c81bce7b794c5cc46a1ecdbea85cb7c75b932c/docs/App%20Initial%20Page.jpg" alt="Initial Screenshot" width="500" style="border: 2px solid #000;"/>
+
+**Output Screenshot**
+
+<img src="https://github.com/ChaithanyaSaiB/UMBC-DATA606-Capstone/blob/a9c81bce7b794c5cc46a1ecdbea85cb7c75b932c/docs/App%20Output%20Page.jpg" alt="Output Screenshot" width="500" style="border: 2px solid #000;"/>
 
 ## 7. Conclusion
 
